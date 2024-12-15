@@ -1,5 +1,7 @@
 package com.example.internetspeedometer;
 
+import static androidx.core.app.ActivityCompat.requestPermissions;
+
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -10,21 +12,19 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
 import android.net.TrafficStats;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.graphics.drawable.IconCompat;
+import android.Manifest;
 
 public class SpeedMonitor extends Service {
 
@@ -33,11 +33,11 @@ public class SpeedMonitor extends Service {
     private long previousTxBytes = 0;
     private Handler handler = new Handler();
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
+
     }
 
     @Override
@@ -128,7 +128,7 @@ public class SpeedMonitor extends Service {
         NotificationChannel channel = new NotificationChannel(
                 CHANNEL_ID,
                 "Internet Speed Notifications",
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
         );
         NotificationManager manager = getSystemService(NotificationManager.class);
         manager.createNotificationChannel(channel);
