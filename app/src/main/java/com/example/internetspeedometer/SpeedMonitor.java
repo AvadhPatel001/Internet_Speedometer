@@ -88,8 +88,8 @@ public class SpeedMonitor extends Service {
                     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
             textView.layout(0, 0, textView.getMeasuredWidth(), textView.getMeasuredHeight());
 
-            Bitmap bitmap = Bitmap.createBitmap(205,
-                    195, Bitmap.Config.ARGB_8888);
+            Bitmap bitmap = Bitmap.createBitmap(textView.getMeasuredWidth(),
+                    textView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             textView.draw(canvas);
 
